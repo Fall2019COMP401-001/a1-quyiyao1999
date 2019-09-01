@@ -1,6 +1,6 @@
 package a1;
 
-import java.util.Scanner;
+import java.util.Scanner; 
 
 public class A1Jedi {
 
@@ -20,11 +20,15 @@ public class A1Jedi {
 			itemprices[i] = scan.nextDouble();				
 		}
 		
-		int people = scan.nextInt();
-		int[] itemquantity = new int[count];
-		int[] customernumber = new int[count];
+		// all above are 100% correct
 		
-		for (int i = 0; i < people; i++) {
+		int[] totalitemquantity = new int[count];
+		int[] totalcustomernumber = new int[count];
+		int[] num = new int[count];
+		
+		int numberofpeople = scan.nextInt();
+		
+		for (int i = 0; i < numberofpeople; i++) {
 			String[] peoplename = new String[2];
 			for (int a = 0; a < peoplename.length; a++) {
 				peoplename[a] = scan.next();
@@ -32,23 +36,35 @@ public class A1Jedi {
 					
 			int numberofitems = scan.nextInt();
 			
-			for (int b = 0; b < numberofitems; b++) {
-				int eachitem = scan.nextInt();
-				String item = scan.next();
-				for (int c = 0; c < count; c++) {
-					if (itemnames[c].equals(item) ) {
-						itemquantity[c] += eachitem;
-						customernumber[c] += 1;
-					}
+			for (int b = 0; b < count; b++) {
+				num[b] = 0;
+			}
+			
+			for (int a = 0; a < numberofitems; a++) {
+				
+				int eachitemnumber = scan.nextInt();
+				String item = scan.next();	
+				
+				for (int b = 0; b < count; b++) {
+					if (item.equals(itemnames[b])) {
+						totalitemquantity[b] += eachitemnumber;
+						num[b] += eachitemnumber; 
+					} 
+				}
+			}
+			
+			for (int a = 0; a < count; a++) {
+				if (num[a] != 0) {
+					totalcustomernumber[a] += 1;
 				}
 			}
 		}
-		
+	
 		for (int i = 0; i < count; i++) {
-			if (customernumber[i] == 0) {
+			if (totalcustomernumber[i] == 0) {
 				System.out.println("No customers bought " + itemnames[i]);
 			} else {
-				System.out.println(customernumber[i] + " customers bought " + itemquantity[i] + " " + itemnames[i]);
+				System.out.println(totalcustomernumber[i] + " customers bought " + totalitemquantity[i] + " " + itemnames[i]);
 			}
 		}
 	}
