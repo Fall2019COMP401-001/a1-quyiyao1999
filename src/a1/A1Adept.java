@@ -38,7 +38,7 @@ public class A1Adept {
 				String str = scan.next();
 				for (int c = 0; c < count; c++) {
 					if (itemnames[c].equals(str) ) {
-						prices = prices + numbofeachitem * itemprices[c];
+						prices += numbofeachitem * itemprices[c];
 					}
 				}
 				fullprice[i]= prices;
@@ -58,7 +58,6 @@ public class A1Adept {
 		System.out.println("Smallest: " + allnames[minindex] + " (" + String.format("%.2f", min) + ")");
 		System.out.println("Average: " + String.format("%.2f", average));
 
-				
 		scan.close();
     }
 	
@@ -80,6 +79,7 @@ public class A1Adept {
 		int index = 0;
 		for (int i = 1; i < vals.length; i++) {
 			if (vals[i] > cur_max) {
+				cur_max = vals[i];
 				index = i;
 			}
 		}
@@ -99,10 +99,11 @@ public class A1Adept {
 	
 	static int minIndex(double[] vals) {
 		
-		double cur_max = vals[0];
+		double cur_min = vals[0];
 		int index = 0;
 		for (int i = 1; i < vals.length; i++) {
-			if (vals[i] < cur_max) {
+			if (vals[i] < cur_min) {
+				cur_min = vals[i];
 				index = i;
 			}
 		}
